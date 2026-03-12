@@ -47,7 +47,7 @@ elif st.session_state.step == 'chat':
         st.error("🗺️ **어디로든 떠날 준비 되셨나요? 지금 바로 AI와 함께 설레는 여행 지도를 그려보세요!**")
 
     with st.container(border=True):
-        st.write("당신은 3박 4일 여행을 계획하고 있습니다.")
+        st.write("당신은 여행을 계획하고 있습니다.")
         st.write("여행지는 자유롭게 선택할 수 있으며, 일정·숙소·예산을 스스로 결정해야 합니다.")
         st.write("여행 준비 과정에서 다양한 정보를 탐색하고 비교하여 합리적인 선택을 내려야 하는 상황입니다.")
         st.write("이제 생성형 AI 챗봇과 함께 여행 계획을 수립해 보십시오.")
@@ -129,6 +129,7 @@ elif st.session_state.step == 'survey':
     #    for key in list(st.session_state.keys()):
     #        del st.session_state[key]
     #    st.rerun()
+
 
 
 
