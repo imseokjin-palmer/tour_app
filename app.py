@@ -72,7 +72,7 @@ elif st.session_state.step == 'chat':
                 if question:
                     # 프롬프트에 그룹 톤 반영
                     #prompt = f"당신은 {st.session_state.group} 톤의 여행 전문가입니다. '{question}'에 대해 친절하게 답해주세요."
-                    prompt = f"'{question}'에 대해 {st.session_state.group} 톤으로 친절하게 답해주세요."
+                    prompt = f"'{question}'에 대해 약 70 퍼센트 정도의 {st.session_state.group} 톤으로 친절하게 답해주세요."
                     response = model.generate_content(prompt)
                     
                     # 대화 기록 저장
@@ -110,6 +110,7 @@ elif st.session_state.step == 'survey':
     #    for key in list(st.session_state.keys()):
     #        del st.session_state[key]
     #    st.rerun()
+
 
 
 
