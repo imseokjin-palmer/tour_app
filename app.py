@@ -147,20 +147,3 @@ elif st.session_state.step == 'survey':
     st.link_button("🚀 설문 참여하고 완료하기", final_form_url, use_container_width=True)
     
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
