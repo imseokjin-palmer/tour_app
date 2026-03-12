@@ -41,7 +41,7 @@ elif st.session_state.step == 'chat':
     st.markdown("### ✈️ AI 여행 계획 대화형 서비스")  
 
 
-    def handle_chat(q):
+    def handle_chat(question):
         if question:
             # 1. 프롬프트 구성
             prompt = f"'{question}'에 대해 약 50 퍼센트 정도의 {st.session_state.group} 톤으로 친절하게 답해주세요."
@@ -112,39 +112,10 @@ elif st.session_state.step == 'chat':
 
         # 2. 대화 기록이 있을 때 (최소 한 번 답변을 받은 후)
         else:
-  
+            
             with col1:
                 if st.button("AI 답변듣기", use_container_width=True):
                     handle_chat(question)
-                    # if question:
-                    #     # 1. 프롬프트 구성
-                    #     prompt = f"'{question}'에 대해 약 50 퍼센트 정도의 {st.session_state.group} 톤으로 친절하게 답해주세요."
-                        
-                    #     # 2. 답변 생성을 위한 빈 공간(Placeholder) 생성
-                    #     with st.chat_message("assistant"):
-                    #         message_placeholder = st.empty()
-                    #         full_response = ""
-                            
-                    #         # 3. 스트리밍 호출 (stream=True 추가)
-                    #         responses = model.generate_content(prompt, stream=True)
-                            
-                    #         for chunk in responses:
-                    #             full_response += chunk.text
-                    #             # 실시간으로 텍스트 업데이트
-                    #             message_placeholder.markdown(full_response + "▌")
-                            
-                    #         # 마지막에 커서(▌) 제거
-                    #         message_placeholder.markdown(full_response)
-                        
-                    #     # 4. 대화 기록 저장 (히스토리에 최종 답변 추가)
-                    #     st.session_state.chat_history.append({"role": "user", "content": question})
-                    #     st.session_state.chat_history.append({"role": "assistant", "content": full_response})
-                        
-                    #     # 5. 입력창 비우기 및 화면 갱신
-                    #     st.session_state.widget_input = ""
-                    #     st.rerun()
-                    # else:
-                    #     st.warning("질문을 입력해주세요.")
             
             with col2:
                 if st.button("대화종료", use_container_width=True, type="primary"):
@@ -153,6 +124,7 @@ elif st.session_state.step == 'chat':
                         st.rerun()
                     else:
                         st.warning("최소 한 번 이상 AI와 대화한 후 종료해 주세요.")
+
 
 # --- [3단계] 설문 연결 화면 ---
 elif st.session_state.step == 'survey':
@@ -169,10 +141,7 @@ elif st.session_state.step == 'survey':
     
     st.link_button("🚀 설문 참여하고 완료하기", final_form_url, use_container_width=True)
     
-    #if st.button("처음으로 돌아가기"):
-    #    for key in list(st.session_state.keys()):
-    #        del st.session_state[key]
-    #    st.rerun()
+
 
 
 
