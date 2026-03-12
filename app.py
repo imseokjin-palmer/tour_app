@@ -39,6 +39,40 @@ if st.session_state.step == 'intro':
 # --- [2페이지] AI 대화 화면 ---
 elif st.session_state.step == 'chat':
     st.markdown("### ✈️ AI 여행 계획 대화형 서비스")  
+
+
+    def handle_chat(q):
+        if question:
+            # 1. 프롬프트 구성
+            prompt = f"'{question}'에 대해 약 50 퍼센트 정도의 {st.session_state.group} 톤으로 친절하게 답해주세요."
+            
+            # 2. 답변 생성을 위한 빈 공간(Placeholder) 생성
+            with st.chat_message("assistant"):
+                message_placeholder = st.empty()
+                full_response = ""
+                
+                # 3. 스트리밍 호출 (stream=True 추가)
+                responses = model.generate_content(prompt, stream=True)
+                
+                for chunk in responses:
+                    full_response += chunk.text
+                    # 실시간으로 텍스트 업데이트
+                    message_placeholder.markdown(full_response + "▌")
+                
+                # 마지막에 커서(▌) 제거
+                message_placeholder.markdown(full_response)
+            
+            # 4. 대화 기록 저장 (히스토리에 최종 답변 추가)
+            st.session_state.chat_history.append({"role": "user", "content": question})
+            st.session_state.chat_history.append({"role": "assistant", "content": full_response})
+            
+            # 5. 입력창 비우기 및 화면 갱신
+            st.session_state.widget_input = ""
+            st.rerun()
+        else:
+            st.warning("질문을 입력해주세요.")
+
+    
     
     # 교수님 요청 프레이밍 메시지 (배경색으로 강조)
     if st.session_state.group == "Positive":
@@ -72,7 +106,7 @@ elif st.session_state.step == 'chat':
         if len(st.session_state.chat_history) == 0:
             with col1:
                 if st.button("AI 답변듣기", use_container_width=True, type="primary"):
-                    handle_chat() # 질문 처리 함수 실행
+                    handle_chat(question) # 질문 처리 함수 실행
                     st.rerun()
             # col2는 비워두어 '대화종료' 버튼이 아예 안 보이게 합니다.
 
@@ -81,35 +115,36 @@ elif st.session_state.step == 'chat':
   
             with col1:
                 if st.button("AI 답변듣기", use_container_width=True):
-                    if question:
-                        # 1. 프롬프트 구성
-                        prompt = f"'{question}'에 대해 약 50 퍼센트 정도의 {st.session_state.group} 톤으로 친절하게 답해주세요."
+                    handle_chat(question)
+                    # if question:
+                    #     # 1. 프롬프트 구성
+                    #     prompt = f"'{question}'에 대해 약 50 퍼센트 정도의 {st.session_state.group} 톤으로 친절하게 답해주세요."
                         
-                        # 2. 답변 생성을 위한 빈 공간(Placeholder) 생성
-                        with st.chat_message("assistant"):
-                            message_placeholder = st.empty()
-                            full_response = ""
+                    #     # 2. 답변 생성을 위한 빈 공간(Placeholder) 생성
+                    #     with st.chat_message("assistant"):
+                    #         message_placeholder = st.empty()
+                    #         full_response = ""
                             
-                            # 3. 스트리밍 호출 (stream=True 추가)
-                            responses = model.generate_content(prompt, stream=True)
+                    #         # 3. 스트리밍 호출 (stream=True 추가)
+                    #         responses = model.generate_content(prompt, stream=True)
                             
-                            for chunk in responses:
-                                full_response += chunk.text
-                                # 실시간으로 텍스트 업데이트
-                                message_placeholder.markdown(full_response + "▌")
+                    #         for chunk in responses:
+                    #             full_response += chunk.text
+                    #             # 실시간으로 텍스트 업데이트
+                    #             message_placeholder.markdown(full_response + "▌")
                             
-                            # 마지막에 커서(▌) 제거
-                            message_placeholder.markdown(full_response)
+                    #         # 마지막에 커서(▌) 제거
+                    #         message_placeholder.markdown(full_response)
                         
-                        # 4. 대화 기록 저장 (히스토리에 최종 답변 추가)
-                        st.session_state.chat_history.append({"role": "user", "content": question})
-                        st.session_state.chat_history.append({"role": "assistant", "content": full_response})
+                    #     # 4. 대화 기록 저장 (히스토리에 최종 답변 추가)
+                    #     st.session_state.chat_history.append({"role": "user", "content": question})
+                    #     st.session_state.chat_history.append({"role": "assistant", "content": full_response})
                         
-                        # 5. 입력창 비우기 및 화면 갱신
-                        st.session_state.widget_input = ""
-                        st.rerun()
-                    else:
-                        st.warning("질문을 입력해주세요.")
+                    #     # 5. 입력창 비우기 및 화면 갱신
+                    #     st.session_state.widget_input = ""
+                    #     st.rerun()
+                    # else:
+                    #     st.warning("질문을 입력해주세요.")
             
             with col2:
                 if st.button("대화종료", use_container_width=True, type="primary"):
@@ -139,6 +174,7 @@ elif st.session_state.step == 'survey':
     #    for key in list(st.session_state.keys()):
     #        del st.session_state[key]
     #    st.rerun()
+
 
 
 
