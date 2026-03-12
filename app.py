@@ -64,14 +64,15 @@ elif st.session_state.step == 'chat':
                 st.write(chat["content"])
 
         # 질문 입력창
-        question = st.text_input("질문을 입력하세요", placeholder="예) 스위스 3박 4일 여행 일정 짜줘", label_visibility="collapsed")
+        question = st.text_input("질문을 입력하세요", placeholder="예) 스위스 여행 일정 짜줘", label_visibility="collapsed")
         
         col1, col2 = st.columns([1, 1])
         with col1:
             if st.button("AI 답변듣기", use_container_width=True):
                 if question:
                     # 프롬프트에 그룹 톤 반영
-                    prompt = f"당신은 {st.session_state.group} 톤의 여행 전문가입니다. '{question}'에 대해 친절하게 답해주세요."
+                    #prompt = f"당신은 {st.session_state.group} 톤의 여행 전문가입니다. '{question}'에 대해 친절하게 답해주세요."
+                    prompt = f"'{question}'에 대해 {st.session_state.group} 톤으로 친절하게 답해주세요."
                     response = model.generate_content(prompt)
                     
                     # 대화 기록 저장
@@ -109,6 +110,7 @@ elif st.session_state.step == 'survey':
     #    for key in list(st.session_state.keys()):
     #        del st.session_state[key]
     #    st.rerun()
+
 
 
 
