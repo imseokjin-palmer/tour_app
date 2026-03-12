@@ -156,16 +156,15 @@ elif st.session_state.step == 'chat':
 
 # --- [3단계] 설문 연결 화면 ---
 elif st.session_state.step == 'survey':
-    st.title("📋 서비스 만족도 조사")
+    st.title("📋 AI 챗봇 실험조사")
     #st.subheader("연구 데이터 수집을 위한 마지막 단계입니다.")
     
     # 구글 폼 주소 (기존 주소 유지)
-    #base_url = "https://docs.google.com/forms/d/e/1FAIpQLSdCiF4lzxN5NRaOWIrgLsW9Tphs99FmtS6mLXAlCEKs75udXg/viewform?entry.41790104="
     base_url = "https://docs.google.com/forms/d/e/1FAIpQLSfsE5F-nvnJfu6FlKWnYELp4jLUg6wkyl2f2NbhA2fs_7Gg1w/viewform?usp=pp_url&entry.1624857862="
     final_form_url = base_url + st.session_state.group
     
     #st.info(f"시스템 확인이 완료되었습니다. 현재 할당된 그룹은 **{st.session_state.group}**입니다.")
-    st.info(f"연구 데이터 수집을 위한 마지막 단계입니다. \n 아래의 설문 참여하고 완료하기 버튼을 클릭해주세요.")
+    st.info(f"연구 데이터 수집을 위한 단계입니다. \n 아래의 설문 참여하고 완료하기 버튼을 클릭해주세요.")
     
     
     st.link_button("🚀 설문 참여하고 완료하기", final_form_url, use_container_width=True)
@@ -174,6 +173,7 @@ elif st.session_state.step == 'survey':
     #    for key in list(st.session_state.keys()):
     #        del st.session_state[key]
     #    st.rerun()
+
 
 
 
