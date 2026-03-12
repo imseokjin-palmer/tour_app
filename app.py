@@ -164,7 +164,7 @@ elif st.session_state.step == 'survey':
     final_form_url = base_url + st.session_state.group
     
     #st.info(f"시스템 확인이 완료되었습니다. 현재 할당된 그룹은 **{st.session_state.group}**입니다.")
-    st.info(f"연구 데이터 수집을 위한 단계입니다. \n 아래의 설문 참여하고 완료하기 버튼을 클릭해주세요.")
+    st.info(f"연구 데이터 수집을 위한 단계입니다. \n 아래의 버튼을 클릭해서 설문에 참여해주세요.")
     
     
     st.link_button("🚀 설문 참여하고 완료하기", final_form_url, use_container_width=True)
@@ -173,6 +173,7 @@ elif st.session_state.step == 'survey':
     #    for key in list(st.session_state.keys()):
     #        del st.session_state[key]
     #    st.rerun()
+
 
 
 
