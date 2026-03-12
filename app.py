@@ -30,6 +30,8 @@ if st.session_state.step == 'intro':
         st.write("본 설문은 생성형 AI가 제공하는 정보의 표현 방식이 사용자 인식과 평가에 어떤 영향을 미치는지 알아보기 위한 연구입니다. 방금 경험하신 AI 서비스에 대해 느낀 점을 바탕으로 응답해 주시면 됩니다. 정답은 없으며, 솔직한 의견이 가장 중요합니다.")
         st.write("응답 내용은 연구 목적 외에는 사용되지 않으며, 모든 정보는 익명으로 처리됩니다.")
         st.write("참여해 주셔서 감사합니다.")
+        st.write("")
+        st.write("")
         st.write("연구자: 서울시립대학교 경영학부  강사  김준환")
         st.write("연구자: 한세대학교     교양학부  교수  임석진")
         st.write("")
@@ -144,6 +146,7 @@ elif st.session_state.step == 'survey':
     
     st.link_button("🚀 설문 참여하고 완료하기", final_form_url, use_container_width=True)
     
+
 
 
 
