@@ -9,7 +9,8 @@ st.set_page_config(page_title="여행 계획 AI 비서 서비스", page_icon="�
 try:
     GEMINI_KEY = st.secrets["GEMINI_API_KEY"]
     genai.configure(api_key=GEMINI_KEY)
-    model = genai.GenerativeModel('models/gemini-flash-latest')
+    #model = genai.GenerativeModel('models/gemini-flash-latest') 
+    model = genai.GenerativeModel('models/gemini-3-flash-preview')
 except Exception as e:
     st.error(f"설정 불러오기 실패: {e}")
 
@@ -128,6 +129,7 @@ elif st.session_state.step == 'survey':
     #    for key in list(st.session_state.keys()):
     #        del st.session_state[key]
     #    st.rerun()
+
 
 
 
