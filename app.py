@@ -154,10 +154,11 @@ elif st.session_state.step == 'survey':
     # 그룹별로 다른 구글폼 URL 설정
     if st.session_state.group == "Positive":
         # Positive 그룹용 설문지 주소
-        final_form_url = "https://docs.google.com/forms/d/e/긍정그룹_설문지_주소/viewform"
+        final_form_url = "https://docs.google.com/forms/d/e/1FAIpQLSdSx3VcIp4gTxVBl5EY0aOLiXH0RlreAH_TzbBwhIWtkybjBQ/viewform"
+        
     else:
         # Negative 그룹용 설문지 주소
-        final_form_url = "https://docs.google.com/forms/d/e/부정그룹_설문지_주소/viewform"
+        final_form_url = "https://docs.google.com/forms/d/e/1FAIpQLSeywcOyHeBqxKJA4ch4xmqBlI-n2U-G7o3URvPgKNBPjtdKbQ/viewform"
     
     st.info(f"연구 데이터 수집을 위한 단계입니다. \n 아래의 버튼을 클릭해서 설문에 참여해주세요.")
     
