@@ -131,19 +131,36 @@ elif st.session_state.step == 'chat':
                         st.warning("최소 한 번 이상 AI와 대화한 후 종료해 주세요.")
 
 
+# # --- [3단계] 설문 연결 화면 ---
+# elif st.session_state.step == 'survey':
+#     st.title("📋 AI 챗봇 실험조사")
+#     #st.subheader("연구 데이터 수집을 위한 마지막 단계입니다.")
+    
+#     # 구글 폼 주소 (기존 주소 유지)
+#     base_url = "https://docs.google.com/forms/d/e/1FAIpQLSfsE5F-nvnJfu6FlKWnYELp4jLUg6wkyl2f2NbhA2fs_7Gg1w/viewform?usp=pp_url&entry.1624857862="
+#     final_form_url = base_url + st.session_state.group
+    
+#     #st.info(f"시스템 확인이 완료되었습니다. 현재 할당된 그룹은 **{st.session_state.group}**입니다.")
+#     st.info(f"연구 데이터 수집을 위한 단계입니다. \n 아래의 버튼을 클릭해서 설문에 참여해주세요.")
+    
+    
+#     st.link_button("🚀 설문 참여하고 완료하기", final_form_url, use_container_width=True)
+
+
 # --- [3단계] 설문 연결 화면 ---
 elif st.session_state.step == 'survey':
     st.title("📋 AI 챗봇 실험조사")
-    #st.subheader("연구 데이터 수집을 위한 마지막 단계입니다.")
     
-    # 구글 폼 주소 (기존 주소 유지)
-    base_url = "https://docs.google.com/forms/d/e/1FAIpQLSfsE5F-nvnJfu6FlKWnYELp4jLUg6wkyl2f2NbhA2fs_7Gg1w/viewform?usp=pp_url&entry.1624857862="
-    final_form_url = base_url + st.session_state.group
+    # 그룹별로 다른 구글폼 URL 설정
+    if st.session_state.group == "Positive":
+        # Positive 그룹용 설문지 주소
+        final_form_url = "https://docs.google.com/forms/d/e/긍정그룹_설문지_주소/viewform"
+    else:
+        # Negative 그룹용 설문지 주소
+        final_form_url = "https://docs.google.com/forms/d/e/부정그룹_설문지_주소/viewform"
     
-    #st.info(f"시스템 확인이 완료되었습니다. 현재 할당된 그룹은 **{st.session_state.group}**입니다.")
     st.info(f"연구 데이터 수집을 위한 단계입니다. \n 아래의 버튼을 클릭해서 설문에 참여해주세요.")
     
-    
+    # 결정된 URL로 버튼 연결
     st.link_button("🚀 설문 참여하고 완료하기", final_form_url, use_container_width=True)
-    
 
